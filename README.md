@@ -1,2 +1,1 @@
-# SAPEI
-no me acuerdo que significan las siglas chotas esas
+# SISTEMA ALTERNATIVO DE PAGO PARA EL ESTACIONAMIENTO INSTITUCIONAL
