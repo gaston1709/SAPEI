@@ -1,6 +1,8 @@
 # Arduino compilated files
 *.elf
 *.hex
+*.bin
+*.eep
 
 # C++ objects and libs
 *.slo
@@ -31,7 +33,6 @@ qrc_*.cpp
 ui_*.h
 *.qmlc
 *.jsc
-Makefile*
 *build-*
 *.qm
 *.prl
