@@ -1,3 +1,7 @@
+# Arduino compilated files
+*.elf
+*.hex
+
 # C++ objects and libs
 *.slo
 *.lo
