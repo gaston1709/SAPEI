@@ -1,3 +1,6 @@
+# binari files
+sw/build/bin/*
+
 # Arduino compilated files
 *.elf
 *.hex
