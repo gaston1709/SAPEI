@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>439</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>RFID Manager</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(40, 40, 40);
+color:rgb(255, 255, 255)</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item alignment="Qt::AlignmentFlag::AlignRight">
+     <widget class="QPushButton" name="selectPortButton">
+      <property name="styleSheet">
+       <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 0, 0);
+color: rgb(203, 203, 203);</string>
+      </property>
+      <property name="text">
+       <string>Seleccionar Puerto</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextBrowser" name="textBrowser"/>
+    </item>
+    <item>
+     <widget class="QListWidget" name="cardListWidget"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="dataInputLayout"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="modeControlLayout"/>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="chargeInputLayout">
+      <item>
+       <widget class="QLineEdit" name="chargeInput">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(240, 240, 240);
+color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Ingrese monto a cargar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="chargeButton">
+        <property name="styleSheet">
+         <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 0, 0);
+color: rgb(203, 203, 203);</string>
+        </property>
+        <property name="text">
+         <string>CARGAR</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="cardControlLayout">
+      <item>
+       <widget class="QPushButton" name="addCardButton">
+        <property name="styleSheet">
+         <string notr="true">font: 700 9pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 0, 0);
+color: rgb(203, 203, 203);</string>
+        </property>
+        <property name="text">
+         <string>AGREGAR TARJETA</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="portSelectionLayout"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>600</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSAPEI">
+    <property name="title">
+     <string>SAPEI</string>
+    </property>
+   </widget>
+   <addaction name="menuSAPEI"/>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
