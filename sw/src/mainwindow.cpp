@@ -12,6 +12,7 @@
 #include <QComboBox>
 #include <QVBoxLayout>
 #include <QDialogButtonBox>
+#include <QShortcut>  
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -42,6 +43,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->cardListWidget, &QListWidget::itemDoubleClicked,
             this, &MainWindow::on_cardListWidget_itemDoubleClicked);
 
+    QShortcut *enterShortcut = new QShortcut(QKeySequence(Qt::Key_Return), this);  // Return key (ENTER)
+    QShortcut *numericEnterShortcut = new QShortcut(QKeySequence(Qt::Key_Enter), this);  // Numeric keypad ENTER
+    connect(enterShortcut, &QShortcut::activated, this, &MainWindow::on_chargeButton_clicked);
+    connect(numericEnterShortcut, &QShortcut::activated, this, &MainWindow::on_chargeButton_clicked);
+
+
     connect(ui->selectPortButton, &QPushButton::clicked, this, &MainWindow::selectSerialPort);  // Add this line to connect the new button
 }
 
@@ -61,25 +68,26 @@ void MainWindow::connectSerialPort() {
 
         if (serial->open(QIODevice::ReadWrite)) {
             connect(serial, &QSerialPort::readyRead, this, &MainWindow::handleReadyRead);
-            qDebug() << "Conexión serial abierta en" << selectedPortName;
+            qDebug() << "Serial connection opened on" << selectedPortName;
         } else {
-            qDebug() << "No se pudo abrir la conexión serial en" << selectedPortName;
+            qDebug() << "Failed to open serial connection on" << selectedPortName;
+            qDebug() << "Error:" << serial->errorString();  // Output detailed error
         }
     } else {
-        qDebug() << "No se ha seleccionado ningún puerto COM.";
+        qDebug() << "No serial port selected.";
     }
 }
 
 void MainWindow::selectSerialPort() {
     QDialog dialog(this);
-    dialog.setWindowTitle("Seleccionar Puerto Serial");
+    dialog.setWindowTitle("Select Serial Port");
 
     QVBoxLayout layout(&dialog);
 
     QComboBox comboBox;
     const auto ports = QSerialPortInfo::availablePorts();
     for (const QSerialPortInfo &port : ports) {
-        comboBox.addItem(port.portName());
+        comboBox.addItem(port.portName());  // This will list ports like /dev/ttyS* or /dev/ttyUSB*
     }
     layout.addWidget(&comboBox);
 
@@ -93,6 +101,7 @@ void MainWindow::selectSerialPort() {
         connectSerialPort();  // Reconnect using the selected port
     }
 }
+
 
 void MainWindow::sendToArduino(const QString &message) {
     if (serial->isOpen()) {
