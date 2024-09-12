@@ -29,8 +29,9 @@ void setup() {
 
 void loop() {
   unsigned long currentTime = millis();
-  clearSerialBuffer();  // Limpiar el buffer del Serial antes de comenzar el escaneo
 
+  while (Serial.available() > 0) Serial.read();  //limpia el buffer del serial
+  
   if (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial()) {
     if (currentTime - lastScanTime >= scanInterval) {  // Verificar si ha pasado el intervalo
       showUID(mfrc522.uid.uidByte, mfrc522.uid.size);
@@ -51,12 +52,6 @@ void showUID(byte *buffer, byte bufferSize) {
   }
   uidString.toUpperCase();  // Convertir a mayúsculas para consistencia
   Serial.println(uidString);
-}
-
-void clearSerialBuffer() {
-  while (Serial.available() > 0) {
-    Serial.read();  // Leer y descartar datos del buffer
-  }
 }
 
 void handleLedCommands() {
