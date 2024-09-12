@@ -38,7 +38,7 @@ void loop() {
 
   if (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial()) {
     if (currentTime - lastScanTime >= scanInterval) {  // Verificar si ha pasado el intervalo
-      mostrarUID(mfrc522.uid.uidByte, mfrc522.uid.size);
+      showUID(mfrc522.uid.uidByte, mfrc522.uid.size);
       lastScanTime = currentTime;  // Actualizar el tiempo del último escaneo
     }
     mfrc522.PICC_HaltA();
@@ -49,7 +49,7 @@ void loop() {
   handleBlinking(currentTime);
 }
 
-void mostrarUID(byte *buffer, byte bufferSize) {
+void showUID(byte *buffer, byte bufferSize) {
   String uidString = "";
   for (byte i = 0; i < bufferSize; i++) {
     uidString += String(buffer[i] < 0x10 ? "0" : "") + String(buffer[i], HEX);
