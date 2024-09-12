@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "addcarddialog.h"
 #include <QDebug>
 #include <QByteArray>
 #include <QMessageBox>
@@ -11,7 +12,6 @@
 #include <QComboBox>
 #include <QVBoxLayout>
 #include <QDialogButtonBox>
-#include <addcarddialog.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
