@@ -1,12 +1,7 @@
 #include <Arduino.h>
 #include <SPI.h>
 #include <MFRC522.h>
-
-#define RST_PIN   9
-#define SS_PIN    10
-#define red       5
-#define yellow    6
-#define green     7
+#include "pins.h"
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
@@ -27,9 +22,9 @@ void setup() {
   SPI.begin();
   mfrc522.PCD_Init();
   
-  pinMode(red, OUTPUT);
-  pinMode(yellow, OUTPUT);
-  pinMode(green, OUTPUT);
+  pinMode(RED_LED_PIN, OUTPUT);
+  pinMode(YELLOW_LED_PIN, OUTPUT);
+  pinMode(GREEN_LED_PIN, OUTPUT);
 }
 
 void loop() {
@@ -70,35 +65,35 @@ void handleLedCommands() {
     command.trim();
 
     if (command == "green on") {
-      turnOnLed(green);
+      turnOnLed(GREEN_LED_PIN);
     } else if (command == "red on") {
-      turnOnLed(red);
+      turnOnLed(RED_LED_PIN);
     } else if (command == "yellow on") {
-      turnOnLed(yellow);
+      turnOnLed(YELLOW_LED_PIN);
     } else if (command == "green p") {
-      blinkLed(green, 6);
+      blinkLed(GREEN_LED_PIN, 6);
     } else if (command == "yellow p") {
-      blinkLed(yellow, 6);
+      blinkLed(YELLOW_LED_PIN, 6);
     } else if (command == "red p") {
-      blinkLed(red, 6);
+      blinkLed(RED_LED_PIN, 6);
     } else if (command == "green p on") {
       greenBlinking = true;
       blinkStartTime = millis();
     } else if (command == "green p off") {
       greenBlinking = false;
-      digitalWrite(green, LOW);
+      digitalWrite(GREEN_LED_PIN, LOW);
     } else if (command == "yellow p on") {
       yellowBlinking = true;
       blinkStartTime = millis();
     } else if (command == "yellow p off") {
       yellowBlinking = false;
-      digitalWrite(yellow, LOW);
+      digitalWrite(YELLOW_LED_PIN, LOW);
     } else if (command == "red p on") {
       redBlinking = true;
       blinkStartTime = millis();
     } else if (command == "red p off") {
       redBlinking = false;
-      digitalWrite(red, LOW);
+      digitalWrite(RED_LED_PIN, LOW);
     }
   }
 }
@@ -124,21 +119,21 @@ void blinkLed(int pin, int times) {
 void handleBlinking(unsigned long currentTime) {
   if (greenBlinking) {
     if (currentTime - blinkStartTime >= blinkInterval) {
-      digitalWrite(green, !digitalRead(green));
+      digitalWrite(GREEN_LED_PIN, !digitalRead(GREEN_LED_PIN));
       blinkStartTime = currentTime;
     }
   }
 
   if (yellowBlinking) {
     if (currentTime - blinkStartTime >= blinkInterval) {
-      digitalWrite(yellow, !digitalRead(yellow));
+      digitalWrite(YELLOW_LED_PIN, !digitalRead(YELLOW_LED_PIN));
       blinkStartTime = currentTime;
     }
   }
   
   if (redBlinking) {
     if (currentTime - blinkStartTime >= blinkInterval) {
-      digitalWrite(red, !digitalRead(red));
+      digitalWrite(RED_LED_PIN, !digitalRead(RED_LED_PIN));
       blinkStartTime = currentTime;
     }
   }
