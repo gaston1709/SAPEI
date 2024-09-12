@@ -1,11 +1,11 @@
-#SAPEI Terminal
+# SAPEI Terminal
 Programa terminal para el proyecto SAPEI
 
-#Dependencias
+# Dependencias
 Para instalar las dependencias:
 ```
 sudo apt install qtbase5-dev libqt5serialport5-dev g++
 ```
 
-#Compilacion
+# Compilacion
 Con make :D
