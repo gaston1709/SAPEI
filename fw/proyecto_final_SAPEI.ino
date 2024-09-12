@@ -68,7 +68,7 @@ void handleLedCommands() {
   if (Serial.available() > 0) {
     String command = Serial.readStringUntil('\n');
     command.trim();
-    
+
     if (command == "green on") {
       turnOnLed(green);
     } else if (command == "red on") {
@@ -128,7 +128,7 @@ void handleBlinking(unsigned long currentTime) {
       blinkStartTime = currentTime;
     }
   }
-  
+
   if (yellowBlinking) {
     if (currentTime - blinkStartTime >= blinkInterval) {
       digitalWrite(yellow, !digitalRead(yellow));
